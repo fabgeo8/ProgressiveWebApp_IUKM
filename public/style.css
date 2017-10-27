@@ -1,0 +1,9 @@
+ul {
+    list-style: none;
+}
+.items {
+    font-size: 1.5em;
+}
+.items > li {
+    padding: 10px;
+}
