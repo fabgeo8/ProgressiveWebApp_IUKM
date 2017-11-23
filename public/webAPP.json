@@ -7,11 +7,11 @@
 	"background_color": "#FFDF00",
 	"display": "standalone",
 	"icons": [{
-	"src": "./images/homescreen.png",
+	"src": "./camping2.png",
 	"sizes": "192x192",
 	"type": "image/png"
 	}, {
-	"src": "./images/homescreen-144.png",
+	"src": "./camping.png",
 	"sizes": "144x144",
 	"type": "image/png"
 	}]
