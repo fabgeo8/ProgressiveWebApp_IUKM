@@ -7,3 +7,13 @@ ul {
 .items > li {
     padding: 10px;
 }
+.todo-item-cjeck{
+
+}
+.done-item-check{
+
+}
+.item {
+	font-size: 3em;
+	padding: 10px;
+}
