@@ -1,10 +1,10 @@
 
 {
 	"name": "Cedrics Fabio Mobile Webapplikation Projekt",
-	"short_name": "CediFabioProjekt",
+	"short_name": "Projekt",
 	"start_url": "./index.html",
-	"theme_color": "#FFDF00",
-	"background_color": "#FFDF00",
+	"theme_color": "#CC0066",
+	"background_color": "#CC0066",
 	"display": "standalone",
 	"icons": [{
 	"src": "./camping2.png",
