@@ -1,4 +1,3 @@
-"use strict";
 this.addEventListener('fetch', function (event) {
 if(event.request.headers.get('save-data')){
 // We want to save data, so restrict icons and fonts
