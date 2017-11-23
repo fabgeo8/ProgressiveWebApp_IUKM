@@ -39,7 +39,7 @@ return response;
 this.addEventListener('fetch', function (event) {
 if(event.request.headers.get('save-data')){
 // We want to save data, so restrict icons and fonts
-if (event.request.url.includes('fonts.googleapis.com')) {
+if (event.request.url.includes('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')) {
 // return nothing
 event.respondWith(new Response('', {status: 417, statusText: 'Ignore fonts to save data.' }));
 }
