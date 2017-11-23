@@ -17,3 +17,7 @@ ul {
 	font-size: 3em;
 	padding: 10px;
 }
+.form-control{
+    font-size: 2em;
+    height: 50px;
+}
