@@ -28,7 +28,7 @@ function listTodo(){
 
 		$('#items').empty();
 		$.each(items, function(index, item){
-			$('#items').append('<li class="item"><i class="todo-item-check fa fa-square-o" aria-hidden="true"></i><span data-id="'+ index +'">'+ item +'</span></li>');
+			$('#items').append('<li class="item"><i class="todo-item-check fa fa-square-o" aria-hidden="true"></i><span data-id="'+ index +'"> '+ item +'</span></li>');
 		});
 
 		$('.todo-item-check').click(function(){
@@ -48,7 +48,7 @@ function listDone(){
 
 		$('#items').empty();
 		$.each(items, function(index, item){
-			$('#items').append('<li class="item"><i class="done-item-check fa fa-check-square-o" aria-hidden="true"></i><span data-id="'+ index +'">'+ item +'</span></li>');
+			$('#items').append('<li class="item"><i class="done-item-check fa fa-check-square-o" aria-hidden="true"></i><span data-id="'+ index +'"> '+ item +'</span></li>');
 		});
 	})
 }
