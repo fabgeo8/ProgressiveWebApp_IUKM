@@ -12,7 +12,6 @@ self.addEventListener('install', event => {
         './index.html',
         './camping.png',
         './camping2.png',
-        './camping2.png',
         './webAPP.json',
         offlineUrl
       ]))
