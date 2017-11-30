@@ -4,10 +4,10 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
 navigator.serviceWorker.register('./sw.js')
 .then(registration => navigator.serviceWorker.ready)
 .then(registration => {
-document.getElementById('newtodo').addEventListener('keyup', (event) => {
-  if (event.which === 13) {
+document.getElementById('newtodo').addEventListener('click', () => {
+
     
-    registration.sync.register('notizen').then(() => {
+registration.sync.register('notizen').then(() => {
 var payload = {
 text: document.getElementById('text').value,
 
@@ -16,7 +16,7 @@ idbKeyval.set('todo', payload);
 });
 
 
-  }
+
 
     
 });
