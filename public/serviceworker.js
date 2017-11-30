@@ -4,7 +4,10 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
 navigator.serviceWorker.register('./sw.js')
 .then(registration => navigator.serviceWorker.ready)
 .then(registration => {
-document.getElementById('submit').addEventListener('click', () => {
+document.getElementById('newtodo').addEventListener('keypress', () => {
+  var key = e.which || e.keyCode;
+    if (key === 13) {
+    
 registration.sync.register('notizen').then(() => {
 var payload = {
 text: document.getElementById('text').value,
@@ -12,6 +15,7 @@ text: document.getElementById('text').value,
 };
 idbKeyval.set('todo', payload);
 });
+    }
 });
 });
 } else {
