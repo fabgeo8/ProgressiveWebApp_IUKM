@@ -1,5 +1,6 @@
 
 if ('serviceWorker' in navigator && 'SyncManager' in window) { 
+  console.log('Service Worker ok!');
 navigator.serviceWorker.register('./sw.js')
 .then(registration => navigator.serviceWorker.ready)
 .then(registration => {
