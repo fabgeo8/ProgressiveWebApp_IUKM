@@ -5,9 +5,9 @@ navigator.serviceWorker.register('./sw.js')
 .then(registration => navigator.serviceWorker.ready)
 .then(registration => {
 document.getElementById('newtodo').addEventListener('keypress', () => {
-
+  if (this.which === 13) {
     
-registration.sync.register('notizen').then(() => {
+    registration.sync.register('notizen').then(() => {
 var payload = {
 text: document.getElementById('text').value,
 
@@ -15,6 +15,11 @@ text: document.getElementById('text').value,
 idbKeyval.set('todo', payload);
 });
 });
+
+  }
+
+    
+
 });
 } else {
 document.getElementById('submit').addEventListener('click', () => { 
