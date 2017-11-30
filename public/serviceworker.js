@@ -14,12 +14,12 @@ text: document.getElementById('text').value,
 };
 idbKeyval.set('todo', payload);
 });
-});
+
 
   }
 
     
-
+});
 });
 } else {
 document.getElementById('submit').addEventListener('click', () => { 
