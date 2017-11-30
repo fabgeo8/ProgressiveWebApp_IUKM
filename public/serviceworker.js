@@ -1,5 +1,5 @@
 
-if ('serviceWorker' in navigator && 'SyncManager' in window) { ❶
+if ('serviceWorker' in navigator && 'SyncManager' in window) { 
 navigator.serviceWorker.register('./sw.js')
 .then(registration => navigator.serviceWorker.ready)
 .then(registration => {
@@ -14,12 +14,12 @@ idbKeyval.set('sendMessage', payload);
 });
 });
 } else {
-document.getElementById('submit').addEventListener('click', () => { ❷
-var payload = { ❸
+document.getElementById('submit').addEventListener('click', () => { 
+var payload = { 
 notiz: document.getElementById('text').value,
 
 };
-fetch('/sendMessage/', ❹
+fetch('/sendMessage/', 
 {
 method: ‘POST’,
 headers: new Headers({
