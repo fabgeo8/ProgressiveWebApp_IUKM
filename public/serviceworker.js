@@ -10,7 +10,7 @@ var payload = {
 text: document.getElementById('text').value,
 
 };
-idbKeyval.set('sendMessage', payload);
+idbKeyval.set('todo', payload);
 });
 });
 });
@@ -20,7 +20,7 @@ var payload = {
 text: document.getElementById('text').value,
 
 };
-fetch('/sendMessage/', 
+fetch('/todo', 
 {
 method: 'POST',
 headers: new Headers({
