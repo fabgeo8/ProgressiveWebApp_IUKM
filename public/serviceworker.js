@@ -21,7 +21,7 @@ notiz: document.getElementById('text').value,
 };
 fetch('/sendMessage/', 
 {
-method: ‘POST’,
+method: 'POST',
 headers: new Headers({
 'content-type': 'application/json'
 }),
