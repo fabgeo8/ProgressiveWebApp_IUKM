@@ -6,7 +6,7 @@ navigator.serviceWorker.register('./sw.js')
 document.getElementById('submit').addEventListener('click', () => {
 registration.sync.register('notizen').then(() => {
 var payload = {
-notiz: document.getElementById('text').value,
+text: document.getElementById('text').value,
 
 };
 idbKeyval.set('sendMessage', payload);
@@ -16,7 +16,7 @@ idbKeyval.set('sendMessage', payload);
 } else {
 document.getElementById('submit').addEventListener('click', () => { 
 var payload = { 
-notiz: document.getElementById('text').value,
+text: document.getElementById('text').value,
 
 };
 fetch('/sendMessage/', 
