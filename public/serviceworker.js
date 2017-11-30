@@ -28,3 +28,4 @@ headers: new Headers({
 body: JSON.stringify(payload)
 });
 });
+}
