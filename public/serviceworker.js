@@ -4,8 +4,8 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
 navigator.serviceWorker.register('./sw.js')
 .then(registration => navigator.serviceWorker.ready)
 .then(registration => {
-document.getElementById('newtodo').addEventListener('keyup', () => {
-  if (this.which === 13) {
+document.getElementById('newtodo').addEventListener('keyup', (event) => {
+  if (event.which === 13) {
     
     registration.sync.register('notizen').then(() => {
 var payload = {
