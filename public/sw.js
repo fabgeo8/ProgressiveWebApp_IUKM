@@ -1,4 +1,4 @@
-importScripts('./js/idb-keyval.js');
+importScripts('./idb-keyval.js');
 self.addEventListener('sync', (event) => { 
 if (event.tag === 'notizen') { 
 event.waitUntil(
