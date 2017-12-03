@@ -2,16 +2,18 @@
 if ('serviceWorker' in navigator && 'SyncManager' in window) { 
 navigator.serviceWorker.register('./sw.js')
 .then(registration => navigator.serviceWorker.ready)
-.then(registration => {
-    document.getElementById('newtodo').addEventListener('click', () => {
-      registration.sync.register('notizen').then(() => {
-        var payload = {
-          text: document.getElementById('text').value,
-        };
-      idbKeyval.set('todo', payload);
-      });
+ if  (!navigator.onLine){
+    .then(registration => {
+        document.getElementById('newtodo').addEventListener('click', () => {
+          registration.sync.register('notizen').then(() => {
+            var payload = {
+              text: document.getElementById('text').value,
+            };
+          idbKeyval.set('todo', payload);
+          });
+        });
     });
-});
+ }
 } else {
 /*document.getElementById('submit').addEventListener('click', () => { 
 var payload = { 
