@@ -5,7 +5,6 @@ if  (navigator.onLine){
 navigator.serviceWorker.register('./sw.js')
 console.log('serviceWorker regiistriert!')
 }else{
- navigator.serviceWorker.register('./sw.js')
 .then(registration => navigator.serviceWorker.ready)
 
     .then(registration => {
