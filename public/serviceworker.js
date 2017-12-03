@@ -13,7 +13,7 @@ navigator.serviceWorker.register('./sw.js')
     });
 });
 } else {
-document.getElementById('submit').addEventListener('click', () => { 
+/*document.getElementById('submit').addEventListener('click', () => { 
 var payload = { 
 text: document.getElementById('text').value,
 
@@ -26,5 +26,5 @@ headers: new Headers({
 }),
 body: JSON.stringify(payload)
 });
-});
+});*/
 }
