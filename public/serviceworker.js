@@ -1,7 +1,10 @@
 
 if ('serviceWorker' in navigator && 'SyncManager' in window) { 
+    
+if  (navigator.onLine){
 navigator.serviceWorker.register('./sw.js')
-if  (!navigator.onLine){
+}else{
+ navigator.serviceWorker.register('./sw.js')
 .then(registration => navigator.serviceWorker.ready)
 
     .then(registration => {
