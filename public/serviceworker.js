@@ -1,8 +1,9 @@
 
 if ('serviceWorker' in navigator && 'SyncManager' in window) { 
 navigator.serviceWorker.register('./sw.js')
+if  (!navigator.onLine){
 .then(registration => navigator.serviceWorker.ready)
- if  (!navigator.onLine){
+
     .then(registration => {
         document.getElementById('newtodo').addEventListener('click', () => {
           registration.sync.register('notizen').then(() => {
