@@ -5,9 +5,7 @@ if  (navigator.onLine){
 navigator.serviceWorker.register('./sw.js')
 console.log('serviceWorker regiistriert!')
 }else{
-.then(registration => navigator.serviceWorker.ready)
 
-    .then(registration => {
         document.getElementById('newtodo').addEventListener('click', () => {
           registration.sync.register('notizen').then(() => {
             var payload = {
@@ -16,7 +14,7 @@ console.log('serviceWorker regiistriert!')
           idbKeyval.set('todo', payload);
           });
         });
-    });
+
  }
 } else {
 /*document.getElementById('submit').addEventListener('click', () => { 
