@@ -4,7 +4,6 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
 if  (navigator.onLine){
 navigator.serviceWorker.register('./sw.js')
 console.log('serviceWorker regiistriert!')
-}else{
     .then(registration => navigator.serviceWorker.ready)
 
     .then(registration => {
@@ -18,7 +17,6 @@ console.log('serviceWorker regiistriert!')
           });
         });
       });
- }
 } else {
 /*document.getElementById('submit').addEventListener('click', () => { 
 var payload = { 
