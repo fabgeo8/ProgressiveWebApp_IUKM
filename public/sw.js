@@ -5,7 +5,7 @@ self.addEventListener('install', event => {
      .then(cache => cache.addAll([ 
        '/camping.png',
        '/camping2.png',
-       '/homes.js',
+       '/home.js',
        '/idb-keyval.js',
        '/index.html',
        '/offlinePage.html',
