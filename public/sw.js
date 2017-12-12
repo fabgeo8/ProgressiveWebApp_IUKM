@@ -9,7 +9,7 @@ self.addEventListener('install', event => {
        '/camping2.png',
        '/home.js',
        '/idb-keyval.js',
-       '/index.html',
+       
        '/style.css',
        '/webAPP.json',
         offlineUrl
@@ -33,8 +33,10 @@ self.addEventListener('fetch', event => {
                     });
      return response;
      }).catch(error => { 
-         
+         if (event.request.method === 'GET' &&
+            event.request.headers.get('accept').includes('text/html')) {
             return caches.match(offlineUrl); 
+         } 
           
       });
    }));
