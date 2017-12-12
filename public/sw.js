@@ -9,7 +9,7 @@ self.addEventListener('install', event => {
        '/camping2.png',
        '/home.js',
        '/idb-keyval.js',
-       
+       '/index.html',
        '/style.css',
        '/webAPP.json',
         offlineUrl
