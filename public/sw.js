@@ -1,4 +1,4 @@
-var cacheName = ‘WebAPP’; 
+var cacheName = 'WebAPP'; 
 self.addEventListener('install', event => { 
    event.waitUntil(
      caches.open(cacheName) 
