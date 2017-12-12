@@ -1,4 +1,6 @@
-var cacheName = 'WebAPP'; 
+var cacheName = 'WebAPP';
+const offlineUrl = '/offlinePage.html'; 
+
 self.addEventListener('install', event => { 
    event.waitUntil(
      caches.open(cacheName) 
@@ -8,37 +10,34 @@ self.addEventListener('install', event => {
        '/home.js',
        '/idb-keyval.js',
        '/index.html',
-       '/offlinePage.html',
        '/style.css',
-       '/webAPP.json' 
+       '/webAPP.json',
+        offlineUrl
      ]))
    );
 });
 
-self.addEventListener('fetch', function(event) { 
- event.respondWith(
-   caches.match(event.request) 
-   .then(function(response) {
-     if (response) { 
+self.addEventListener('fetch', event => { ❸
+ event.respondWith(caches.match(event.request).then(function (response) {
+    if (response) {
        return response;
        }
-         var requestToCache = event.request.clone(); 
-         return fetch(requestToCache).then( 
-         function(response) {
-         if(!response || response.status !== 200) { 
-         return response;
+    var fetchRequest = event.request.clone();
+       return fetch(fetchRequest).then(function (response) {
+         if (!response || response.status !== 200) {
+            return response;
          }
-         var responseToCache = response.clone(); 
-         caches.open(cacheName) 
-         .then(function(cache) {
-         cache.put(requestToCache, responseToCache); 
-         });
-         return response;
-       } 
-     );
-   })
- );
-});
+          var responseToCache = response.clone();
+          caches.open(cacheName).then(function (cache) {
+            cache.put(event.request, responseToCache);
+           });
+            return response;
+          }).catch(error => { 
+          if (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html')) {
+            return caches.match(offlineUrl); 
+          }
+      });
+}));
 
 
 
