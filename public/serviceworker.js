@@ -27,7 +27,7 @@ var payload = {
 };
 fetch('/todo/', 
 {
-        method: ‘post’,
+        method: 'post',
         headers: new Headers({
             'content-type': 'application/json'
         }),
