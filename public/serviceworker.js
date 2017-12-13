@@ -10,7 +10,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
     navigator.serviceWorker.register('/sw.js')
     .then(registration => navigator.serviceWorker.ready) 
     .then(registration => {
-        document.getElementById('newtodo').addEventListener('click', () => { 
+        document.getElementById('submit').addEventListener('click', () => { 
             registration.sync.register('textNachricht').then(() => { 
     var payload = {
         text: document.getElementById('text').value,
@@ -20,4 +20,19 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
             });
         });
     });
+}else {
+document.getElementById('submit').addEventListener('click', () => {
+var payload = {
+    text: document.getElementById('text').value,
+};
+fetch('/todo/', 
+{
+        method: ‘post’,
+        headers: new Headers({
+            'content-type': 'application/json'
+        }),
+        body: JSON.stringify(payload)
+})
+.then(displayMessageNotification('Message sent')) 
+.catch((err) => displayMessageNotification('Message failed'));
 }
