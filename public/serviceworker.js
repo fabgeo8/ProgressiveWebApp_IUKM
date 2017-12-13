@@ -36,5 +36,5 @@ fetch('/todo/',
 })
 .then(displayMessageNotification('Message sent')) 
 .catch((err) => displayMessageNotification('Message failed'));
-};
+})
 }
