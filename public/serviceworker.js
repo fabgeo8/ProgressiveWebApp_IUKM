@@ -13,7 +13,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
         document.getElementById('newtodo').addEventListener('submit', () => {          
             registration.sync.register('textNachricht').then(() => { 
     var payload = {
-        text: document.getElementById('#text').value,
+        text: document.getElementById('text').value,
     };
                 
     idbKeyval.set('todo', payload); 
@@ -26,7 +26,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
 document.getElementById('newtodo').addEventListener('submit', () => {
    
 var payload = {
-    text: document.getElementById('#text').value,
+    text: document.getElementById('text').value,
 };
 fetch('/todo/', 
 {
