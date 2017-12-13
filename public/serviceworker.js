@@ -10,10 +10,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
     navigator.serviceWorker.register('/sw.js')
     .then(registration => navigator.serviceWorker.ready) 
     .then(registration => {
-        document.getElementById('newtodo').addEventListener('keypress', () => { 
-              if(this.which == 13) {
-     
-    
+        document.getElementById('newtodo').addEventListener('submit', () => {          
             registration.sync.register('textNachricht').then(() => { 
     var payload = {
         text: document.getElementById('text').value,
@@ -26,9 +23,8 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
         });
     });
 }else {
-document.getElementById('newtodo').addEventListener('keypress', () => {
-      if(this.which == 13) {
-    
+document.getElementById('newtodo').addEventListener('submit', () => {
+   
 var payload = {
     text: document.getElementById('text').value,
 };
@@ -42,6 +38,6 @@ fetch('/todo/',
 })
 .then(displayMessageNotification('Message sent')) 
 .catch((err) => displayMessageNotification('Message failed'));
-      }
+      
 })
 }
