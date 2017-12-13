@@ -16,7 +16,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
         text: document.getElementById('text').value,
     };
                 
-    idbKeyval.set('sendMessage', payload); 
+    idbKeyval.set('todo', payload); 
             });
         });
     });
