@@ -6,3 +6,18 @@ if ('serviceWorker' in navigator) {
                 console.log('ServiceWorker registration failed: ', err);
     });
 } 
+if ('serviceWorker' in navigator && 'SyncManager' in window) {
+    navigator.serviceWorker.register('/sw.js')
+    .then(registration => navigator.serviceWorker.ready) 
+    .then(registration => {
+        document.getElementById('submit').addEventListener('click', () => { 
+            registration.sync.register('textNachricht').then(() => { 
+    var payload = {
+        text: document.getElementById('text').value,
+    };
+                
+    idbKeyval.set('sendMessage', payload); 
+            });
+        });
+    });
+}
