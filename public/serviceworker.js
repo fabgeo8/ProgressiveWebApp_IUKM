@@ -22,7 +22,9 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
         });
     });
 }else {
-document.getElementById('newtodo').addEventListener('click', () => {
+document.getElementById('newtodo').addEventListener('keypress', () => {
+      if(this.which == 13) {
+    
 var payload = {
     text: document.getElementById('text').value,
 };
@@ -36,5 +38,6 @@ fetch('/todo/',
 })
 .then(displayMessageNotification('Message sent')) 
 .catch((err) => displayMessageNotification('Message failed'));
+      }
 })
 }
