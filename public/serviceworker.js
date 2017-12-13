@@ -10,7 +10,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
     navigator.serviceWorker.register('/sw.js')
     .then(registration => navigator.serviceWorker.ready) 
     .then(registration => {
-        document.getElementById('newtodo').addEventListener('click', () => { 
+        document.getElementById('newtodo').addEventListener('keypress', () => { 
               if(this.which == 13) {
      
     
