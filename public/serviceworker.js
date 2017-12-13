@@ -11,6 +11,9 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
     .then(registration => navigator.serviceWorker.ready) 
     .then(registration => {
         document.getElementById('newtodo').addEventListener('click', () => { 
+              if(this.which == 13) {
+     
+    
             registration.sync.register('textNachricht').then(() => { 
     var payload = {
         text: document.getElementById('text').value,
@@ -19,6 +22,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
     idbKeyval.set('todo', payload); 
     displayMessageNotification('Message queued');
             });
+              }
         });
     });
 }else {
