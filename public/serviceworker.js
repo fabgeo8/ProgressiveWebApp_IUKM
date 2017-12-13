@@ -19,7 +19,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
     idbKeyval.set('todo', payload); 
     displayMessageNotification('Message queued');
             });
-              }
+              
         });
     });
 }else {
