@@ -10,7 +10,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
     navigator.serviceWorker.register('/sw.js')
     .then(registration => navigator.serviceWorker.ready) 
     .then(registration => {
-        document.getElementById('submit').addEventListener('click', () => { 
+        document.getElementById('newtodo').addEventListener('click', () => { 
             registration.sync.register('textNachricht').then(() => { 
     var payload = {
         text: document.getElementById('text').value,
@@ -22,7 +22,7 @@ if ('serviceWorker' in navigator && 'SyncManager' in window) {
         });
     });
 }else {
-document.getElementById('submit').addEventListener('click', () => {
+document.getElementById('newtodo').addEventListener('click', () => {
 var payload = {
     text: document.getElementById('text').value,
 };
