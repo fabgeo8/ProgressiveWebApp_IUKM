@@ -1,5 +1,6 @@
 var cacheName = 'WebAPP';
 const offlineUrl = '/offlinePage.html'; 
+importScripts('/idb-keyval.js');
 
 self.addEventListener('install', event => { 
    event.waitUntil(
@@ -41,6 +42,21 @@ self.addEventListener('fetch', event => {
       });
    }));
   });
+
+
+self.addEventListener('sync', (event) => { 
+   if (event.tag === 'textNachricht') { 
+      event.waitUntil(
+         idbKeyval.get('todo').then(value => 
+            fetch('/todo', { 
+               method: 'POST',
+               headers: new Headers({ 'content-type': 'application/json' }),
+               body: JSON.stringify(value) 
+         })));
+      
+         idbKeyval.delete('todo'); 
+      }
+});
 
 
 
