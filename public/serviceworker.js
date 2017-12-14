@@ -50,11 +50,12 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
   console.log('Service Worker is registered', swReg);
 
   swRegistration = swReg;
+        console.log('initialize ok 1');
   initializeUI();
-      onsole.log('initialize ok');
+      console.log('initialize ok 2');
 })
   .catch(function(error) {
-    console.log('Service Worker Error');
+  console.log('Service Worker Error');
   });
 } else {
   console.warn('Push messaging is not supported');
