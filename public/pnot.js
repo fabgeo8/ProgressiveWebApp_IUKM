@@ -71,7 +71,7 @@ function subscribeUser() {
   .then(function(subscription) {
     console.log('User is subscribed.');
 
-    updateSubscriptionOnServer(subscription);
+
 
     isSubscribed = true;
 
