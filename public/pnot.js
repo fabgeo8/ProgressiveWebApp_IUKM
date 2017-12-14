@@ -1,10 +1,13 @@
 'use strict';
 
-const applicationServerPublicKey = 'BMHSuJfgy5mGp7HY86YrdPVphpVRHtkownJjuLxzi9v_5WeKMhbOTXMyb7X2m4tQOCprZnjCaTy69TISP880HgA';
-const pushButton = document.querySelector('.js-push-btn');
-
 let isSubscribed = false;
 let swRegistration = null;
+
+$(document).ready(function(){
+const applicationServerPublicKey = 'BMHSuJfgy5mGp7HY86YrdPVphpVRHtkownJjuLxzi9v_5WeKMhbOTXMyb7X2m4tQOCprZnjCaTy69TISP880HgA';
+const pushButton = document.querySelector('.js-push-btn');
+}
+
 
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
