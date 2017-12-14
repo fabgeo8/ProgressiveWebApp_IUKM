@@ -21,3 +21,29 @@ function urlB64ToUint8Array(base64String) {
   }
   return outputArray;
 }
+
+function initializeUI() {
+  // Set the initial subscription value
+  swRegistration.pushManager.getSubscription()
+  .then(function(subscription) {
+    isSubscribed = !(subscription === null);
+
+    if (isSubscribed) {
+      console.log('User IS subscribed.');
+    } else {
+      console.log('User is NOT subscribed.');
+    }
+
+    updateBtn();
+  });
+}
+
+function updateBtn() {
+  if (isSubscribed) {
+    console.log('Disable Push Messaging');
+  } else {
+    console.log('Enable Push Messaging');
+  }
+
+  pushButton.disabled = false;
+}
