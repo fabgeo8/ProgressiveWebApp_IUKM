@@ -51,6 +51,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 
   swRegistration = swReg;
   initializeUI();
+      onsole.log('initialize ok');
 })
   .catch(function(error) {
     console.log('Service Worker Error');
