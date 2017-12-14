@@ -36,7 +36,7 @@ function initializeUI() {
   swRegistration.pushManager.getSubscription()
   .then(function(subscription) {
     isSubscribed = !(subscription === null);
-  updateSubscriptionOnServer(subscription);
+ 
    if (isSubscribed) {
       console.log('User IS subscribed.');
     } else {
@@ -51,7 +51,7 @@ function updateBtn() {
   if (Notification.permission === 'denied') {
     pushButton.textContent = 'Push Messaging Blocked.';
     pushButton.disabled = true;
-    updateSubscriptionOnServer(null);
+
     return;
   }
  if (isSubscribed) {
@@ -93,7 +93,7 @@ function unsubscribeUser() {
     console.log('Error unsubscribing', error);
   })
   .then(function() {
-    updateSubscriptionOnServer(null);
+    
 
     console.log('User is unsubscribed.');
     isSubscribed = false;
