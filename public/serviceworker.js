@@ -27,7 +27,7 @@ document.getElementById('newtodo').addEventListener('submit', () => {
 var payload = {
     text: document.getElementById('text').value,
 };
-fetch('/todo/', 
+fetch('/todo', 
 {
         method: 'post',
         headers: new Headers({
