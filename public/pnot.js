@@ -6,7 +6,7 @@ let swRegistration = null;
 $(document).ready(function(){
 const applicationServerPublicKey = 'BMHSuJfgy5mGp7HY86YrdPVphpVRHtkownJjuLxzi9v_5WeKMhbOTXMyb7X2m4tQOCprZnjCaTy69TISP880HgA';
 const pushButton = document.querySelector('.js-push-btn');
-}
+});
 
 
 function urlB64ToUint8Array(base64String) {
