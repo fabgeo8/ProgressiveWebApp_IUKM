@@ -26,7 +26,7 @@ function initializeUI() {
   pushButton.addEventListener('click', function() {
     pushButton.disabled = true;
     if (isSubscribed) {
-   consol.log('hoi');
+    subscribeUser();
     } else {
       subscribeUser();
     }
