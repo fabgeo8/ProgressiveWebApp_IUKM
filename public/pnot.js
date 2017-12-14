@@ -28,21 +28,21 @@ function initializeUI() {
   .then(function(subscription) {
     isSubscribed = !(subscription === null);
 
-    if (isSubscribed) {
-    pushButton.textContent = 'Disable Push Messaging';
-  } else {
-    pushButton.textContent = 'Enable Push Messaging';
-  }
+   if (isSubscribed) {
+      console.log('User IS subscribed.');
+    } else {
+      console.log('User is NOT subscribed.');
+    }
 
     updateBtn();
   });
 }
 
 function updateBtn() {
-  if (isSubscribed) {
-    console.log('Disable Push Messaging');
+ if (isSubscribed) {
+    pushButton.textContent = 'Disable Push Messaging';
   } else {
-    console.log('Enable Push Messaging');
+    pushButton.textContent = 'Enable Push Messaging';
   }
 
   pushButton.disabled = false;
