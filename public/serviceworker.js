@@ -53,7 +53,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
   initializeUI();
 })
   .catch(function(error) {
-    console.error('Service Worker Error', error);
+    console.log('Service Worker Error');
   });
 } else {
   console.warn('Push messaging is not supported');
