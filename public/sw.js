@@ -42,6 +42,16 @@ self.addEventListener('fetch', event => {
       });
    }));
   });
+self.addEventListener('fetch', event => {
+   const title = 'Neue Notiz';
+  const options = {
+    body: 'Neue Notiz wurde hinzugefügt. Sie sind wieder Online!',
+    icon: '/camping.png',
+    badge: '/camping2.png'
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+  });
 
 
 self.addEventListener('sync', (event) => { 
