@@ -5,7 +5,7 @@ let swRegistration = null;
 const applicationServerPublicKey = 'BMHSuJfgy5mGp7HY86YrdPVphpVRHtkownJjuLxzi9v_5WeKMhbOTXMyb7X2m4tQOCprZnjCaTy69TISP880HgA';
 var pushButton;
 $(document).ready(function(){
-  pushButton = $('.btn');
+  pushButton = $('.btn')[0];
 });
 
 
