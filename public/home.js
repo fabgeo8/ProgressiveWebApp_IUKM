@@ -15,12 +15,10 @@ $(document).ready(function(){
 	});
 
 	$('#todo-link').click(function(){
-		$(this).fadeOut();
 		listTodo();
 	});
 
 	$('#done-link').click(function(){
-		$(this).fadeOut();
 		listDone();
 	});
 });
@@ -34,6 +32,7 @@ function listTodo(){
 		});
 
 		$('.todo-item-check').click(function(){
+				$(this).fadeOut();
 				item = $(this).next('span');
 				itemid = $(this).next('span').data('id');
 				$.post('/done', {'id' :  itemid}, function(data){
