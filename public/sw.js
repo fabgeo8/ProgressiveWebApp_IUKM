@@ -61,9 +61,9 @@ self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
-  const title = 'Push Codelab';
+  const title = 'Neue Notiz';
   const options = {
-    body: 'Yay it works.',
+    body: 'Neue Notiz wurde hinzugefügt. Sie sind wieder Online!',
     icon: '/camping.png',
     badge: '/camping2.png'
   };
