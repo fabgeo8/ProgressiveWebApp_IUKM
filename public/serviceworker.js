@@ -43,16 +43,11 @@ fetch('/todo',
 
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   console.log('Service Worker and Push is supported');
-
-  navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('/sw.js')
 
 .then(function(swReg) {
-  console.log('Service Worker is registered', swReg);
-
   swRegistration = swReg;
-        console.log('initialize ok 1');
   initializeUI();
-      console.log('initialize ok 2');
 })
   .catch(function(error) {
   console.log('Service Worker Error');
