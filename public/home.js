@@ -15,10 +15,12 @@ $(document).ready(function(){
 	});
 
 	$('#todo-link').click(function(){
+		$(this).fadeOut();
 		listTodo();
 	});
 
 	$('#done-link').click(function(){
+		$(this).fadeOut();
 		listDone();
 	});
 });
