@@ -23,10 +23,12 @@ saveRegistrationDetails(endpoint, key, authSecret);
       }
  };
  var body = 'Thank you for registering';
+var iconUrl = 'https://d30y9cdsu7xlg0.cloudfront.net/png/12540-200.png';
  webpush.sendNotification(pushSubscription, 
   JSON.stringify({
     msg: body,
-    url: 'https://iuk.herokuapp.com/'
+    url: 'https://iuk.herokuapp.com/',
+    icon: iconUrl
  }))
  .then(result => res.sendStatus(201))
  .catch(err => { console.log(err); });
