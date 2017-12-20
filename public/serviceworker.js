@@ -21,7 +21,7 @@ if ('serviceWorker' in navigator) {
                 
           });
       });
- +    console.log('Service Worker and Sync is supported');
+    console.log('Service Worker and Sync is supported');
   }else {
   document.getElementById('newtodo').addEventListener('submit', () => {
      
