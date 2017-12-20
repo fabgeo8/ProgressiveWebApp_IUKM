@@ -8,45 +8,39 @@
 } */
  if ('serviceWorker' in navigator && 'SyncManager' in window) {
      navigator.serviceWorker.register('/sw.js')
-	     .then(navigator.serviceWorker.ready.then(function(registration) {
-         //addSyncEvent();
-	     $('#newtodo').submit(function(e){
-		registration.sync.register('textNachricht').then(() => { 
+	 .then(navigator.serviceWorker.ready.then(function(registration) {
+	 //addSyncEvent();
+	 $('#newtodo').submit(function(e){
 			e.preventDefault();
-			console.log('submit');	
+			console.log('submit');
+			registration.sync.register('textNachricht').then(function() { 
+				
 			var payload = {'text': $('#text').val()}
-			idbKeyval.set('data', payload); 	
+			idbKeyval.set('data', payload); 
+			console.log("textNachricht registered with payload" + payload);
+			//reset input field
 			$('#newtodo')[0].reset();
-              	});
+		});
 		
 	});
      
     
  }, function(reason){
 	console.log(reason);     
-     }));
+     }).catch(function(){
+		 console.log("unable to register for sync");
+		// system was unable to register for a sync,
+		// this could be an OS-level restriction
+		addSubmitPostEvent();
+	 });
     console.log('Service Worker and Sync is supported');
 	 navigator.serviceWorker.ready.then(function() { console.log("hi service worker ist parat") })
 	listTodo();
   }else {
-  document.getElementById('submit').addEventListener('click', () => {
-     
- var payload = {
-     text: document.getElementById('text').value,
- };
- fetch('/todo', 
- {
-         method: 'post',
-         headers: new Headers({
-             'content-type': 'application/json'
-         }),
-         body: JSON.stringify(payload)
- })
- .then(displayMessageNotification('Message sent')) 
- .catch((err) => displayMessageNotification('Message failed'));
-       
- })
+		console.log("sync not supported");
+		addSubmitPostEvent();
  }
+ 
 /* if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
     return registration.pushManager.getSubscription() 
