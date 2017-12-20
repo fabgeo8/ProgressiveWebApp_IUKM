@@ -7,7 +7,7 @@ if ('serviceWorker' in navigator) {
     });
 } 
 if ('serviceWorker' in navigator && 'SyncManager' in window) {
-    navigator.serviceWorker.register('sw.js').then(function(registration) {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
     return registration.pushManager.getSubscription() 
         .then(function(subscription) {
         if (subscription) { 
@@ -25,7 +25,7 @@ Uint8Array(rawKey))) : '';
             authSecret = rawAuthSecret ?
             btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
             endpoint = subscription.endpoint;
-            return fetch('./register', { 
+            return fetch('/todo', { 
                 method: 'post',
                 headers: new Headers({
                     'content-type': 'application/json'
