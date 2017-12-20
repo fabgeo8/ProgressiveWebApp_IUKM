@@ -6,6 +6,41 @@ if ('serviceWorker' in navigator) {
                 console.log('ServiceWorker registration failed: ', err);
     });
 } 
+ if ('serviceWorker' in navigator && 'SyncManager' in window) {
+     navigator.serviceWorker.register('/sw.js')
+     .then(registration => navigator.serviceWorker.ready) 
+     .then(registration => {
+         document.getElementById('newtodo').addEventListener('submit', () => {          
+             registration.sync.register('textNachricht').then(() => { 
+     var payload = {
+         text: document.getElementById('text').value,
+     };
+                 
+     idbKeyval.set('todo', payload); 
+             });
+                
+          });
+      });
+ +    console.log('Service Worker and Sync is supported');
+  }else {
+  document.getElementById('newtodo').addEventListener('submit', () => {
+     
+ var payload = {
+     text: document.getElementById('text').value,
+ };
+ fetch('/todo', 
+ {
+         method: 'post',
+         headers: new Headers({
+             'content-type': 'application/json'
+         }),
+         body: JSON.stringify(payload)
+ })
+ .then(displayMessageNotification('Message sent')) 
+ .catch((err) => displayMessageNotification('Message failed'));
+       
+ })
+ }
 if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
     return registration.pushManager.getSubscription() 
