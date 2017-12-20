@@ -11,20 +11,18 @@ if ('serviceWorker' in navigator) {
      .then(registration => navigator.serviceWorker.ready) 
      .then(registration => {
          $('#newtodo').submit(function(e){
-		 registration.sync.register('textNachricht').then(() => { 
-      		e.preventDefault();
-		console.log('submit');
-	
+		registration.sync.register('textNachricht').then(() => { 
+			e.preventDefault();
+			console.log('submit');	
 			var payload = {'text': $('#text').val()}
-			idbKeyval.set('data', payload); 
-	
+			idbKeyval.set('data', payload); 	
 			$('#newtodo')[0].reset();
-              });
+              	});
 		
 	});
      
     
-  });
+ });
     console.log('Service Worker and Sync is supported');
   }else {
   document.getElementById('submit').addEventListener('click', () => {
