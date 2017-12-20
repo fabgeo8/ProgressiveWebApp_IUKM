@@ -22,7 +22,8 @@
 			$('#newtodo')[0].reset();
 		});
 		
-	});
+	});	
+    addPushService(registration);
      
     console.log('Service Worker and Sync is supported');
 	 //navigator.serviceWorker.ready.then(function() { console.log("hi service worker ist parat") })
@@ -51,9 +52,8 @@ if('serviceWorker' in navigator){
     });
 }
  
-if ('serviceWorker' in navigator/*&& 'PushManager' in window*/) {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-    return registration.pushManager.getSubscription() 
+function addPushService(registration){
+	registration.pushManager.getSubscription() 
         .then(function(subscription) {
         if (subscription) { 
             return;
@@ -82,10 +82,9 @@ if ('serviceWorker' in navigator/*&& 'PushManager' in window*/) {
             });
         });
     });
- }).catch(function(err) {
- 	console.log('ServiceWorker registration failed: ', err);
- });
+ })
  } 
+}
 
 function addSyncEvent(){
 	$('#newtodo').submit(function(e){
