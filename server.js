@@ -1,10 +1,15 @@
 var express = require('express');
-var app = express();
-
 const webpush = require('web-push'); 
 var bodyParser = require('body-parser');
+var app = express();
 
 app.use(express.json());
+
+
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 webpush.setVapidDetails( 
  'mailto:contact@deanhume.com',
@@ -34,15 +39,11 @@ var iconUrl = 'https://d30y9cdsu7xlg0.cloudfront.net/png/12540-200.png';
  .catch(err => { console.log(err); });
 });
 
+function saveRegistrationDetails(endpoint, key, authSecret) {
+  // Save the users details in a DB
+}
 
 app.use(express.static('public'));
-
-
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
 
 var todo = [];
 var done = [];
