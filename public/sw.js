@@ -58,6 +58,7 @@ self.addEventListener('sync', (event) => {
          
          idbKeyval.delete('data'); 
          console.log("done");
+         listDodo();
 
       }
 });
