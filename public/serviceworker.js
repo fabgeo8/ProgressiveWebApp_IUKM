@@ -18,7 +18,7 @@ if ('serviceWorker' in navigator) {
 			
 			var payload = {'text': $('#text').val()}
 			idbKeyval.set('data', payload); 
-			listTodo();
+
 					
 		//});	
 		$('#newtodo')[0].reset();
