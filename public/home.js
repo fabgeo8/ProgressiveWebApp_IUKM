@@ -67,7 +67,7 @@ function addEventListeners(){
 		itemid = $(this).next('span').data('id');
 		$.post('/todo', {'id' :  itemid}, function(data){
 			console.log(data);
-			listDodo();
+			listTodo();
 
 		});
 	});
