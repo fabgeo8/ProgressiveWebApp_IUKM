@@ -48,7 +48,7 @@ self.addEventListener('fetch', event => {
 self.addEventListener('sync', (event) => { 
    if (event.tag === 'textNachricht') { 
       event.waitUntil(
-         idbKeyval.get('todo').then(value => 
+         idbKeyval.get('data').then(value => 
             fetch('/todo', { 
                method: 'POST',
                headers: new Headers({ 'content-type': 'application/json' }),
