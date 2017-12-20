@@ -18,6 +18,15 @@ self.addEventListener('install', event => {
    );
 });
 
+self.addEventListener('install', function(event) {
+  // The promise that skipWaiting() returns can be safely ignored.
+  self.skipWaiting();
+
+  // Perform any other actions required for your
+  // service worker to install, potentially inside
+  // of event.waitUntil();
+});
+
 self.addEventListener('fetch', event => {
  event.respondWith(caches.match(event.request).then(function (response) {
     if (response) {
