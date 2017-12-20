@@ -73,9 +73,9 @@ self.addEventListener('sync', (event) => {
       }
 });
 
-/* self.addEventListener('push', function (event) {
+self.addEventListener('push', function (event) {
  var payload = event.data ? JSON.parse(event.data.text()) : 'no payload'; 
- var title = 'Progressive Times';
+ var title = 'New Todo Added';
  event.waitUntil(
    self.registration.showNotification(title, { 
       body: payload.msg,
@@ -83,7 +83,7 @@ self.addEventListener('sync', (event) => {
       icon: payload.icon
    })
  );
-}); */
+}); 
 
 function send_message_to_all_clients(msg){
     clients.matchAll().then(clients => {
