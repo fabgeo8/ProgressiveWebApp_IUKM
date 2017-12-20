@@ -2,7 +2,7 @@ var cacheName = 'WebAPP';
 const offlineUrl = '/offlinePage.html'; 
 importScripts('./idb-keyval.js');
 
-/* self.addEventListener('install', event => { 
+self.addEventListener('install', event => { 
    event.waitUntil(
      caches.open(cacheName) 
      .then(cache => cache.addAll([ 
@@ -16,7 +16,7 @@ importScripts('./idb-keyval.js');
         offlineUrl
      ]))
    );
-}); */
+}); 
 
 /*self.addEventListener('install', function(event) {
   // The promise that skipWaiting() returns can be safely ignored.
