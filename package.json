@@ -6,6 +6,7 @@
     "node": "6.11.1"
   },
     "dependencies": {
-    "express": "expressjs/express"
+    "express": "expressjs/express",
+     "web-push" : "web-push"
   }
 }
