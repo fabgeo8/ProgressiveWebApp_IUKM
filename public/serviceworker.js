@@ -24,16 +24,16 @@
 		
 	});
      
-    
+    console.log('Service Worker and Sync is supported');
+	 //navigator.serviceWorker.ready.then(function() { console.log("hi service worker ist parat") })
+	
  }).catch(function(){
 		 console.log("unable to register for sync");
 		// system was unable to register for a sync,
 		// this could be an OS-level restriction
 		addSubmitPostEvent();
 	 });
-    console.log('Service Worker and Sync is supported');
-	 navigator.serviceWorker.ready.then(function() { console.log("hi service worker ist parat") })
-	listTodo();
+    
   }else {
 		console.log("sync not supported");
 		addSubmitPostEvent();
