@@ -97,7 +97,6 @@ function unsubscribeUser() {
 
     console.log('User is unsubscribed.');
     isSubscribed = false;
-    Notification.permission = 'default';
     updateBtn();
   });
 }
