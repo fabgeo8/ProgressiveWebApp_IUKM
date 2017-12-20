@@ -21,12 +21,10 @@ saveRegistrationDetails(endpoint, key, authSecret);
       }
  };
  var body = 'Thank you for registering';
- var iconUrl = 'https://example.com/images/homescreen.png';
  webpush.sendNotification(pushSubscription, 
   JSON.stringify({
     msg: body,
     url: 'http://localhost:3111/',
-    icon: iconUrl
  }))
  .then(result => res.sendStatus(201))
  .catch(err => { console.log(err); });
