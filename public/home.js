@@ -23,7 +23,7 @@ $(document).ready(function(){
 });
 
 function listTodo(){
-	$.get('/todo', function(items){
+	$.get('/done', function(items){
 
 		$('#items').empty();
 		$.each(items, function(index, item){
