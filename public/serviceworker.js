@@ -23,11 +23,9 @@ if ('serviceWorker' in navigator) {
 	});
      
     
- }, 
-
-	   
-	   console.log("failed");
-	 );
+ }, function(reason){
+	console.log(reason);     
+     });
     console.log('Service Worker and Sync is supported');
   }else {
   document.getElementById('submit').addEventListener('click', () => {
