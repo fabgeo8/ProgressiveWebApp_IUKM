@@ -23,7 +23,7 @@ $(document).ready(function(){
 });
 
 function listTodo(){
-	$.get('/done', function(items){
+	$.get('/todo', function(items){
 
 		$('#items').empty();
 		$.each(items, function(index, item){
@@ -64,7 +64,7 @@ function addEventListeners(){
 		$(this).fadeOut();
 		item = $(this).next('span');
 		itemid = $(this).next('span').data('id');
-		$.post('/todo', {'id' :  itemid}, function(data){
+		$.post('/done', {'id' :  itemid}, function(data){
 			console.log(data);
 			listTodo();
 
