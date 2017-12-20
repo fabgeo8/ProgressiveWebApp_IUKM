@@ -1,6 +1,6 @@
 var cacheName = 'WebAPP';
 const offlineUrl = '/offlinePage.html'; 
-importScripts('/idb-keyval.js');
+importScripts('./idb-keyval.js');
 
 self.addEventListener('install', event => { 
    event.waitUntil(
