@@ -50,6 +50,7 @@ self.addEventListener('sync', (event) => {
    if (event.tag === 'textNachricht') { 
       event.waitUntil(
          idbKeyval.get('data').then(value => 
+            console.log(value);
             fetch('/todo', { 
                method: 'POST',
                headers: new Headers({ 'content-type': 'application/json' }),
@@ -58,7 +59,7 @@ self.addEventListener('sync', (event) => {
          
          idbKeyval.delete('data'); 
          console.log("done");
-         listDodo();
+         listTodo();
 
       }
 });
