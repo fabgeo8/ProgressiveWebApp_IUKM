@@ -7,6 +7,6 @@
   },
     "dependencies": {
     "express": "expressjs/express",
-     "web-push" : "web-push"
+    "web-push": "^3.2.5"
   }
 }
