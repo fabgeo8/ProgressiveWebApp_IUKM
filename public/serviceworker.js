@@ -14,13 +14,10 @@ if ('serviceWorker' in navigator) {
 		 registration.sync.register('textNachricht').then(() => { 
       		e.preventDefault();
 		console.log('submit');
-		// $.post("/todo",{'text': $('#text').val()}, function(data){ 
-			
+	
 			var payload = {'text': $('#text').val()}
 			idbKeyval.set('data', payload); 
-
-					
-		//});	
+	
 		$('#newtodo')[0].reset();
               });
 		
@@ -48,7 +45,7 @@ if ('serviceWorker' in navigator) {
        
  })
  }
-if ('serviceWorker' in navigator && 'PushManager' in window) {
+/* if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
     return registration.pushManager.getSubscription() 
         .then(function(subscription) {
@@ -105,7 +102,7 @@ function unsubscribe() {
                         });
      });
     }
-}
+} */
 
 
 
