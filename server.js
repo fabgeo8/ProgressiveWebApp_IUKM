@@ -4,6 +4,8 @@ var app = express();
 const webpush = require('web-push'); 
 var bodyParser = require('body-parser');
 
+app.use(express.json());
+
 webpush.setVapidDetails( 
  'mailto:contact@deanhume.com',
 'BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY',
@@ -24,7 +26,7 @@ saveRegistrationDetails(endpoint, key, authSecret);
  webpush.sendNotification(pushSubscription, 
   JSON.stringify({
     msg: body,
-    url: 'https://iuk.herokuapp.com/',
+    url: 'https://iuk.herokuapp.com/'
  }))
  .then(result => res.sendStatus(201))
  .catch(err => { console.log(err); });
@@ -40,11 +42,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-app.use(express.json());
-
 var todo = [];
 var done = [];
-
 
 app.post('/todo', function (req, res) {
 	console.log('request erhalten');
