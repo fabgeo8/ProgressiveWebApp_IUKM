@@ -15,6 +15,7 @@ if ('serviceWorker' in navigator) {
 		console.log('submit');
 		$.post("/todo",{'text': $('#text').val()}, function(data){
 			console.log(data);
+			var payload = {'text': $('#text').val()}
 			idbKeyval.set('data', payload); 
 			listTodo();
 					
