@@ -30,17 +30,8 @@ function listTodo(){
 		$.each(items, function(index, item){
 			$('#items').append('<li class="item"><i class="todo-item-check fa fa-square-o" aria-hidden="true"></i><span data-id="'+ index +'"> '+ item +'</span></li>');
 		});
+		addEventListeners();
 
-		$('.todo-item-check').click(function(){
-				$(this).fadeOut();
-				item = $(this).next('span');
-				itemid = $(this).next('span').data('id');
-				$.post('/done', {'id' :  itemid}, function(data){
-					console.log(data);
-					listTodo();
-			
-				});
-			});
 	});
 }
 
@@ -51,5 +42,33 @@ function listDone(){
 		$.each(items, function(index, item){
 			$('#items').append('<li class="item"><i class="done-item-check fa fa-check-square-o" aria-hidden="true"></i><span data-id="'+ index +'"> '+ item +'</span></li>');
 		});
-	})
+		addEventListeners();
+	
+	});
+	
+	
+}
+
+function addEventListeners(){
+	$('.done-item-check').click(function(){
+		$(this).fadeOut();
+		item = $(this).next('span');
+		itemid = $(this).next('span').data('id');
+		$.post('/undo', {'id' :  itemid}, function(data){
+			console.log(data);
+			listDone();
+
+		});
+	});
+	
+	$('.todo-item-check').click(function(){
+		$(this).fadeOut();
+		item = $(this).next('span');
+		itemid = $(this).next('span').data('id');
+		$.post('/todo', {'id' :  itemid}, function(data){
+			console.log(data);
+			listDodo();
+
+		});
+	});
 }
