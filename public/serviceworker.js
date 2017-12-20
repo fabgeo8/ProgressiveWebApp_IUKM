@@ -82,9 +82,7 @@ function addPushService(registration){
             });
         });
     });
- })
- } 
-}
+ }
 
 function addSyncEvent(){
 	$('#newtodo').submit(function(e){
