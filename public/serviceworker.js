@@ -38,6 +38,11 @@
 		console.log("sync not supported");
 		addSubmitPostEvent();
  }
+
+window.addEventListener('message', function(event){ 
+	console.log(event);
+	listTodo();
+}, false);
  
 /* if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
