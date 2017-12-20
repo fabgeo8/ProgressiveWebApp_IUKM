@@ -27,7 +27,7 @@
 	console.log(reason);     
      });
     console.log('Service Worker and Sync is supported');
-	listDodo();
+	listTodo();
   }else {
   document.getElementById('submit').addEventListener('click', () => {
      
