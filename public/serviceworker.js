@@ -6,7 +6,7 @@ if ('serviceWorker' in navigator) {
                 console.log('ServiceWorker registration failed: ', err);
     });
 } 
-if ('serviceWorker' in navigator && 'SyncManager' in window) {
+if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
     return registration.pushManager.getSubscription() 
         .then(function(subscription) {
@@ -25,7 +25,7 @@ Uint8Array(rawKey))) : '';
             authSecret = rawAuthSecret ?
             btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
             endpoint = subscription.endpoint;
-            return fetch('/todo', { 
+            return fetch('/pushNot', { 
                 method: 'post',
                 headers: new Headers({
                     'content-type': 'application/json'
@@ -66,18 +66,5 @@ function unsubscribe() {
 }
 document.getElementById("unsubscribe").addEventListener("click", unsubscribe); 
 
-if ('serviceWorker' in navigator && 'PushManager' in window) {
-  console.log('Service Worker and Push is supported');
-    navigator.serviceWorker.register('/sw.js')
 
-.then(function(swReg) {
-  swRegistration = swReg;
-  initializeUI();
-})
-  .catch(function(error) {
-  console.log('Service Worker Error');
-  });
-} else {
-  console.warn('Push messaging is not supported');
-  pushButton.textContent = 'Push Not Supported';
-}
+
