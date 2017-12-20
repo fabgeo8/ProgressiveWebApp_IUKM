@@ -15,7 +15,7 @@
 			console.log('submit');
 			registration.sync.register('textNachricht').then(function() { 
 				
-			var payload = {'text': $('#text').val()}
+			var payload = {'text': $('#text').val()};
 			idbKeyval.set('data', payload); 
 			console.log("textNachricht registered with payload" + payload);
 			//reset input field
@@ -25,9 +25,7 @@
 	});
      
     
- }, function(reason){
-	console.log(reason);     
-     }).catch(function(){
+ }).catch(function(){
 		 console.log("unable to register for sync");
 		// system was unable to register for a sync,
 		// this could be an OS-level restriction
