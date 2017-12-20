@@ -10,7 +10,7 @@ if ('serviceWorker' in navigator) {
      navigator.serviceWorker.register('/sw.js')
      .then(registration => navigator.serviceWorker.ready) 
      .then(registration => {
-         document.getElementById('text').addEventListener('submit', () => {          
+         document.getElementById('text').addEventListener('click', () => {          
              registration.sync.register('textNachricht').then(() => { 
      var payload = {
          text: document.getElementById('text').value,
