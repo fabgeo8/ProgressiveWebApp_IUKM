@@ -24,18 +24,9 @@ if ('serviceWorker' in navigator) {
      
     
  }, 
-	$('#newtodo').submit(function(e){
-		registration.sync.register('textNachricht').then(() => { 
-			e.preventDefault();
-			console.log('submit');	
-			var payload = {'text': $('#text').val()}
-			idbKeyval.set('data', payload); 	
-			$('#newtodo')[0].reset();
-              	});
-		
-	}); 
+
 	   
-	   
+	   console.log("failed");
 	 );
     console.log('Service Worker and Sync is supported');
   }else {
