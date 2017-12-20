@@ -46,7 +46,7 @@ self.addEventListener('fetch', event => {
 
 
 self.addEventListener('sync', (event) => { 
-   if (event.tag === 'textNachricht' && !navigator.onLine) { 
+   if (event.tag === 'textNachricht') { 
       event.waitUntil(
          idbKeyval.get('todo').then(value => 
             fetch('/todo', { 
