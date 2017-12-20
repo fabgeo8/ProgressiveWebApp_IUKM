@@ -51,7 +51,7 @@ if('serviceWorker' in navigator){
     });
 }
  
-/* if ('serviceWorker' in navigator && 'PushManager' in window) {
+if ('serviceWorker' in navigator/*&& 'PushManager' in window*/) {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
     return registration.pushManager.getSubscription() 
         .then(function(subscription) {
@@ -64,8 +64,7 @@ if('serviceWorker' in navigator){
         })
         .then(function(subscription) {
             var rawKey = subscription.getKey ? subscription.getKey('p256dh') : ''; 
-            key = rawKey ? btoa(String.fromCharCode.apply(null, new
-Uint8Array(rawKey))) : '';
+            key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
             var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
             authSecret = rawAuthSecret ?
             btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
@@ -78,13 +77,13 @@ Uint8Array(rawKey))) : '';
                 body: JSON.stringify({
                     endpoint: subscription.endpoint,
                     key: key,
-                    authSecret: authSecret,
+                    authSecret: authSecret
                 }),
             });
         });
     });
-         }).catch(function(err) {
- console.log('ServiceWorker registration failed: ', err);
+ }).catch(function(err) {
+ 	console.log('ServiceWorker registration failed: ', err);
  });
  } 
  */
@@ -124,6 +123,20 @@ function unsubscribe() {
     }
 } */
 
+function urlBase64ToUint8Array(base64String) {
+	const padding = '='.repeat((4 - base64String.length % 4) % 4);
+	const base64 = (base64String + padding)
+		.replace(/\-/g, '+')
+		.replace(/_/g, '/');
+	
+	const rawData = window.atob(base64);
+	const outputArray = new Uint8Array(rawData.length);
+	
+	for (let i = 0; i < rawData.length; ++i) {
+		outputArray[i] = rawData.charCodeAt(i);
+	}
+	return outputArray;
+}
 
 
 
