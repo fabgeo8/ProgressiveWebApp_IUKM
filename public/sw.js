@@ -59,7 +59,7 @@ self.addEventListener('sync', (event) => {
       }
 });
 
-self.addEventListener('push', function (event) {
+/* self.addEventListener('push', function (event) {
  var payload = event.data ? JSON.parse(event.data.text()) : 'no payload'; 
  var title = 'Progressive Times';
  event.waitUntil(
@@ -69,7 +69,7 @@ self.addEventListener('push', function (event) {
       icon: payload.icon
    })
  );
-});
+}); */
 
 
 
