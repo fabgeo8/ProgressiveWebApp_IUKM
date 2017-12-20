@@ -1,8 +1,7 @@
-'use strict';
-
-let isSubscribed = false;
-let swRegistration = null;
-const applicationServerPublicKey = 'BMHSuJfgy5mGp7HY86YrdPVphpVRHtkownJjuLxzi9v_5WeKMhbOTXMyb7X2m4tQOCprZnjCaTy69TISP880HgA';
+var endpoint;
+var key;
+var authSecret;
+var vapidPublicKey = 'BMHSuJfgy5mGp7HY86YrdPVphpVRHtkownJjuLxzi9v_5WeKMhbOTXMyb7X2m4tQOCprZnjCaTy69TISP880HgA';
 var pushButton;
 $(document).ready(function(){
   pushButton = $('.btn')[0];
