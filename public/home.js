@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	listTodo();
 
-	$('#newtodo').submit(function(e){
+	/* $('#newtodo').submit(function(e){
 		e.preventDefault();
 		console.log('submit');
 		$.post("/todo",{'text': $('#text').val()}, function(data){
@@ -12,7 +12,7 @@ $(document).ready(function(){
 					
 		});	
 		$('#newtodo')[0].reset();
-	});
+	}); */
 
 	$('#todo-link').click(function(){
 		listTodo();
