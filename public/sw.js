@@ -55,7 +55,7 @@ self.addEventListener('sync', (event) => {
                body: JSON.stringify(value) 
          })));
          
-         idbKeyval.delete('todo'); 
+         idbKeyval.delete('data'); 
       }
 });
 
