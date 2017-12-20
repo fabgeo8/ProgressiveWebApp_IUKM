@@ -28,6 +28,14 @@ app.get('/todo', function (req, res){
 	res.send(todo);
 });
 
+app.post('/undo', function (req, res){
+	console.log("undo request erhalten");
+	var id = req.body.id;
+	todo.push(done[id]);
+	done.splice(id, 1);
+	res.status(200).send('OK');
+});
+
 app.post('/done', function (req, res){
 	console.log('request erhalten');
 	console.log(req.body);
