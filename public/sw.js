@@ -68,9 +68,11 @@ self.addEventListener('sync', (event) => {
          idbKeyval.delete('data'); 
          console.log("done");
          //listTodo();
-         this.clients.matchAll().then(clients => {
-            clients.forEach(client => client.postMessage('posted'));
-         });
+          clients.matchAll().then(clients => {
+            clients.forEach(client => {
+               send_message_to_client(client, msg).then(m => console.log("SW Received Message: "+m));
+            })
+          })
 
       }
 });
@@ -87,6 +89,21 @@ self.addEventListener('sync', (event) => {
  );
 }); */
 
+function send_message_to_client(client, msg){
+    return new Promise(function(resolve, reject){
+        var msg_chan = new MessageChannel();
+
+        msg_chan.port1.onmessage = function(event){
+            if(event.data.error){
+                reject(event.data.error);
+            }else{
+                resolve(event.data);
+            }
+        };
+
+        client.postMessage("SW Says: '"+msg+"'", [msg_chan.port2]);
+    });
+}
 
 
 
