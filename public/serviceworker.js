@@ -43,6 +43,29 @@ Uint8Array(rawKey))) : '';
  });
  } 
 
+function unsubscribe() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready
+            .then((serviceWorkerRegistration) => {
+                serviceWorkerRegistration.pushManager.getSubscription() 
+                    .then((subscription) => {
+                        if (!subscription) {
+                            console.log("Not subscribed, nothing to do.");
+                            return;
+                        }
+                        subscription.unsubscribe() 
+                            then(function() {
+                                console.log("Successfully unsubscribed!.");
+                            })
+                            .catch((e) => {
+                                logger.error('Error thrown while unsubscribing from push messaging', e);
+                            });
+                        });
+     });
+    }
+}
+document.getElementById("unsubscribe").addEventListener("click", unsubscribe); 
+
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   console.log('Service Worker and Push is supported');
     navigator.serviceWorker.register('/sw.js')
