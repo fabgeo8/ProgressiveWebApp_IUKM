@@ -54,9 +54,7 @@ self.addEventListener('sync', (event) => {
                method: 'POST',
                headers: new Headers({ 'content-type': 'application/json' }),
                body: JSON.stringify(value) 
-         })
-                                   console.log(value);
-      ));
+         })));
          
          idbKeyval.delete('data'); 
          console.log("done");
