@@ -7,40 +7,41 @@ if ('serviceWorker' in navigator) {
     });
 } 
 if ('serviceWorker' in navigator && 'SyncManager' in window) {
-    navigator.serviceWorker.register('/sw.js')
-    .then(registration => navigator.serviceWorker.ready) 
-    .then(registration => {
-        document.getElementById('newtodo').addEventListener('submit', () => {          
-            registration.sync.register('textNachricht').then(() => { 
-    var payload = {
-        text: document.getElementById('text').value,
-    };
-                
-    idbKeyval.set('todo', payload); 
+    navigator.serviceWorker.register('sw.js').then(function(registration) {
+    return registration.pushManager.getSubscription() 
+        .then(function(subscription) {
+        if (subscription) { 
+            return;
+        }
+        return registration.pushManager.subscribe({ 
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+        })
+        .then(function(subscription) {
+            var rawKey = subscription.getKey ? subscription.getKey('p256dh') : ''; 
+            key = rawKey ? btoa(String.fromCharCode.apply(null, new
+Uint8Array(rawKey))) : '';
+            var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+            authSecret = rawAuthSecret ?
+            btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
+            endpoint = subscription.endpoint;
+            return fetch('./register', { 
+                method: 'post',
+                headers: new Headers({
+                    'content-type': 'application/json'
+                }),
+                body: JSON.stringify({
+                    endpoint: subscription.endpoint,
+                    key: key,
+                    authSecret: authSecret,
+                }),
             });
-              
         });
     });
-    console.log('Service Worker and Sync is supported');
-}else {
-document.getElementById('newtodo').addEventListener('submit', () => {
-   
-var payload = {
-    text: document.getElementById('text').value,
-};
-fetch('/todo/', 
-{
-        method: 'post',
-        headers: new Headers({
-            'content-type': 'application/json'
-        }),
-        body: JSON.stringify(payload)
-})
-.then(displayMessageNotification('Message sent')) 
-.catch((err) => displayMessageNotification('Message failed'));
-      
-})
-}
+         }).catch(function(err) {
+ console.log('ServiceWorker registration failed: ', err);
+ });
+ } 
 
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   console.log('Service Worker and Push is supported');
