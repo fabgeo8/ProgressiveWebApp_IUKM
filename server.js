@@ -19,7 +19,11 @@ webpush.setVapidDetails(
 
 app.post('/pushNot', function (req, res) { 
   var endpoint = req.body.endpoint;
+  var key = req.body.key;
+  var authSecret = req.body.authSecret;
+	
 saveRegistrationDetails(endpoint, key, authSecret); 
+	
  const pushSubscription = { 
   endpoint: req.body.endpoint,
     keys: {
