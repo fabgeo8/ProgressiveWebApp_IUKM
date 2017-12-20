@@ -58,18 +58,17 @@ self.addEventListener('sync', (event) => {
          idbKeyval.delete('todo'); 
       }
 });
-self.addEventListener('push', function(event) {
-  console.log('[Service Worker] Push Received.');
-  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
-  const title = 'Neue Notiz';
-  const options = {
-    body: 'Neue Notiz wurde hinzugefügt.',
-    icon: '/camping.png',
-    badge: '/camping2.png'
-  };
-
-  event.waitUntil(self.registration.showNotification(title, options));
+self.addEventListener('push', function (event) {
+ var payload = event.data ? JSON.parse(event.data.text()) : 'no payload'; ❶
+ var title = 'Progressive Times';
+ event.waitUntil(
+   self.registration.showNotification(title, { ❷
+      body: payload.msg,
+      url: payload.url,
+      icon: payload.icon
+   })
+ );
 });
 
 
