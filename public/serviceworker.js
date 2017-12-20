@@ -10,16 +10,7 @@ if ('serviceWorker' in navigator) {
      navigator.serviceWorker.register('/sw.js')
      .then(registration => navigator.serviceWorker.ready) 
      .then(registration => {
-         $('#newtodo').submit(function(e){
-		registration.sync.register('textNachricht').then(() => { 
-			e.preventDefault();
-			console.log('submit');	
-			var payload = {'text': $('#text').val()}
-			idbKeyval.set('data', payload); 	
-			$('#newtodo')[0].reset();
-              	});
-		
-	});
+         addSyncEvent();
      
     
  });
@@ -79,7 +70,21 @@ Uint8Array(rawKey))) : '';
  console.log('ServiceWorker registration failed: ', err);
  });
  } 
+ */
+function addSyncEvent(){
+	$('#newtodo').submit(function(e){
+		registration.sync.register('textNachricht').then(() => { 
+			e.preventDefault();
+			console.log('submit');	
+			var payload = {'text': $('#text').val()}
+			idbKeyval.set('data', payload); 	
+			$('#newtodo')[0].reset();
+              	});
+		
+	});
+}
 
+/*
 function unsubscribe() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.ready
