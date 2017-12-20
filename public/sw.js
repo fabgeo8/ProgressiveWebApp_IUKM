@@ -68,11 +68,7 @@ self.addEventListener('sync', (event) => {
          idbKeyval.delete('data'); 
          console.log("done");
          //listTodo();
-          clients.matchAll().then(clients => {
-            clients.forEach(client => {
-               send_message_to_client(client, msg).then(m => console.log("SW Received Message: "+m));
-            })
-          })
+         send_message_to_all_clients("post complete");
 
       }
 });
@@ -88,6 +84,14 @@ self.addEventListener('sync', (event) => {
    })
  );
 }); */
+
+function send_message_to_all_clients(msg){
+    clients.matchAll().then(clients => {
+        clients.forEach(client => {
+            send_message_to_client(client, msg).then(m => console.log("SW Received Message: "+m));
+        })
+    })
+}
 
 function send_message_to_client(client, msg){
     return new Promise(function(resolve, reject){
