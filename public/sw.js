@@ -57,9 +57,10 @@ self.addEventListener('sync', (event) => {
          })));
          
          idbKeyval.delete('data'); 
-         listDone();
-         listTodo();
+
       }
+            listDone();
+         listTodo();
 });
 
 /* self.addEventListener('push', function (event) {
