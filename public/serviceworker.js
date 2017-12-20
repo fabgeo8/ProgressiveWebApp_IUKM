@@ -23,7 +23,7 @@ if ('serviceWorker' in navigator) {
       });
     console.log('Service Worker and Sync is supported');
   }else {
-  document.getElementById('newtodo').addEventListener('submit', () => {
+  document.getElementById('submit').addEventListener('click', () => {
      
  var payload = {
      text: document.getElementById('text').value,
