@@ -22,15 +22,18 @@ $(document).ready(function(){
 	});
 });
 
-function submitTodo(item){
-	console.log('submit');
-	$.post("/todo",{'text': item}, function(data){
-		console.log(data);
-
-		listTodo();
-
+function addSubmitPostEvent(){
+	$('#newtodo').submit(function(e){
+		e.preventDefault();
+		console.log('submit');
+		$.post("/todo",{'text': $('#text').val()}, function(data){
+			console.log(data);
+			
+			listTodo();
+					
+		});	
+		$('#newtodo')[0].reset();
 	});	
-	$('#newtodo')[0].reset();	
 }
 
 function listTodo(){
