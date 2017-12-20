@@ -2,10 +2,6 @@ var endpoint;
 var key;
 var authSecret;
 var vapidPublicKey = 'BMHSuJfgy5mGp7HY86YrdPVphpVRHtkownJjuLxzi9v_5WeKMhbOTXMyb7X2m4tQOCprZnjCaTy69TISP880HgA';
-var pushButton;
-$(document).ready(function(){
-  pushButton = $('.btn')[0];
-});
 
 
 function urlB64ToUint8Array(base64String) {
@@ -23,94 +19,37 @@ function urlB64ToUint8Array(base64String) {
   return outputArray;
 }
 
-function initializeUI() {
-  pushButton.addEventListener('click', function() {
-    pushButton.disabled = true;
-    if (isSubscribed) {
-    unsubscribeUser();
-    } else {
-      subscribeUser();
-    }
-  });
-  swRegistration.pushManager.getSubscription()
-  .then(function(subscription) {
-    isSubscribed = !(subscription === null);
-    updateSubscriptionOnServer(subscription);
-   if (isSubscribed) {
-      console.log('User IS subscribed.');
-    } else {
-      console.log('User is NOT subscribed.');
-    }
-
-    updateBtn();
-  });
-}
-
-function updateBtn() {
-  if (Notification.permission === 'denied') {
-    pushButton.textContent = 'Push Messaging Blocked.';
-    pushButton.disabled = true;
-    updateSubscriptionOnServer(null);
-    return;
-  }
- if (isSubscribed) {
-    pushButton.textContent = 'Disable Push Messaging';
-  } else {
-    pushButton.textContent = 'Enable Push Messaging';
-  }
-
-  pushButton.disabled = false;
-}
-function subscribeUser() {
-  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
-  swRegistration.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: applicationServerKey
-  })
-  .then(function(subscription) {
-    console.log('User is subscribed.');
-
-    updateSubscriptionOnServer(subscription);
-
-    isSubscribed = true;
-
-    updateBtn();
-  })
-  .catch(function(err) {
-    console.log('Failed to subscribe the user: ', err);
-    updateBtn();
-  });
-}
-function unsubscribeUser() {
-  swRegistration.pushManager.getSubscription()
-  .then(function(subscription) {
-    if (subscription) {
-      return subscription.unsubscribe();
-    }
-  })
-  .catch(function(error) {
-    console.log('Error unsubscribing', error);
-  })
-  .then(function() {
-    
-  updateSubscriptionOnServer(null);
-    console.log('User is unsubscribed.');
-    isSubscribed = false;
-    updateBtn();
-  });
-}
-
-function updateSubscriptionOnServer(subscription) {
-  // TODO: Send subscription to application server
-
-  const subscriptionJson = document.querySelector('.js-subscription-json');
-  const subscriptionDetails =
-    document.querySelector('.js-subscription-details');
-
-  if (subscription) {
-    
-  } else {
-    
-  }
-}
+const webpush = require('web-push'); 
+const express = require('express');
+var bodyParser = require('body-parser');
+const app = express();
+webpush.setVapidDetails( 
+ 'mailto:contact@deanhume.com',
+'BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY',
+ 'p6YVD7t8HkABoez1CvVJ5bl7BnEdKUu5bSyVjyxMBh0'
+);
+app.post('/register', function (req, res) { 
+  var endpoint = req.body.endpoint;
+saveRegistrationDetails(endpoint, key, authSecret); 
+ const pushSubscription = { 
+  endpoint: req.body.endpoint,
+    keys: {
+      auth: req.body.authSecret,
+      p256dh: req.body.key
+      }
+ };
+ var body = 'Thank you for registering';
+ var iconUrl = 'https://example.com/images/homescreen.png';
+ webpush.sendNotification(pushSubscription, 
+  JSON.stringify({
+    msg: body,
+    url: 'http://localhost:3111/',
+    icon: iconUrl
+ }))
+ .then(result => res.sendStatus(201))
+ .catch(err => { console.log(err); });
+});
+app.listen(3111, function () {
+ console.log('Web push app listening on port 3111!')
+});
 
