@@ -50,6 +50,7 @@ app.post('/todo', function (req, res) {
 	console.log('request erhalten');
 	console.log(req.body);
 	var item = req.body.text;
+	console.log('request item: '+ item);
 	todo.push(item);
 	res.send(todo);
 });
