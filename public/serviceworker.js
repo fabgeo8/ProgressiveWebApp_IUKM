@@ -27,6 +27,7 @@
 	console.log(reason);     
      });
     console.log('Service Worker and Sync is supported');
+	 navigator.serviceWorker.ready.then(function() { console.log("hi service worker ist parat") })
 	listTodo();
   }else {
   document.getElementById('submit').addEventListener('click', () => {
