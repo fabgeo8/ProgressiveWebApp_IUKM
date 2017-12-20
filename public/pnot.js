@@ -94,7 +94,7 @@ function unsubscribeUser() {
   })
   .then(function() {
     
-
+  updateSubscriptionOnServer(null);
     console.log('User is unsubscribed.');
     isSubscribed = false;
     updateBtn();
