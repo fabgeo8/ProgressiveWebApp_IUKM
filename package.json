@@ -1,6 +1,6 @@
 {
   "name": "IUK",
-  "description": "a really cool app",
+  "description": "todo list app",
   "version": "1.0.0",
   "engines": {
     "node": "6.11.1"
