@@ -11,7 +11,8 @@ if ('serviceWorker' in navigator) {
      .then(registration => navigator.serviceWorker.ready) 
      .then(registration => {
          $('#newtodo').submit(function(e){
-		e.preventDefault();
+		 registration.sync.register('textNachricht').then(() => { 
+      		e.preventDefault();
 		console.log('submit');
 		// $.post("/todo",{'text': $('#text').val()}, function(data){ 
 			
@@ -21,6 +22,8 @@ if ('serviceWorker' in navigator) {
 					
 		//});	
 		$('#newtodo')[0].reset();
+              });
+		
 	});
      
     
