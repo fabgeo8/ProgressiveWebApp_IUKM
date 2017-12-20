@@ -67,7 +67,10 @@ self.addEventListener('sync', (event) => {
          
          idbKeyval.delete('data'); 
          console.log("done");
-         listTodo();
+         //listTodo();
+         this.clients.matchAll().then(clients => {
+            clients.forEach(client => client.postMessage('posted'));
+         });
 
       }
 });
