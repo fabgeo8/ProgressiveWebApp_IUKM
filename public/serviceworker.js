@@ -86,7 +86,7 @@ if ('serviceWorker' in navigator/*&& 'PushManager' in window*/) {
  	console.log('ServiceWorker registration failed: ', err);
  });
  } 
- */
+
 function addSyncEvent(){
 	$('#newtodo').submit(function(e){
 		registration.sync.register('textNachricht').then(() => { 
