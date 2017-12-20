@@ -46,10 +46,11 @@ self.addEventListener('fetch', event => {
 
 
 self.addEventListener('sync', (event) => { 
+   console.log("sync fired");
    if (event.tag === 'textNachricht') { 
       event.waitUntil(
-
          idbKeyval.get('data').then(value => 
+            console.log("before fetch");
             fetch('/todo', { 
                method: 'POST',
                headers: new Headers({ 'content-type': 'application/json' }),
