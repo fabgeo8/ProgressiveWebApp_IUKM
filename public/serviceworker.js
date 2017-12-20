@@ -99,7 +99,7 @@ function unsubscribe() {
      });
     }
 }
-document.getElementById("unsubscribe").addEventListener("click", unsubscribe); 
+
 
 
 
