@@ -7,8 +7,8 @@
     });
 } */
  if ('serviceWorker' in navigator && 'SyncManager' in window) {
-     navigator.serviceWorker.register('/sw.js');
-     navigator.serviceWorker.ready.then(function(registration) {
+     navigator.serviceWorker.register('/sw.js')
+	     .then(navigator.serviceWorker.ready.then(function(registration) {
          //addSyncEvent();
 	     $('#newtodo').submit(function(e){
 		registration.sync.register('textNachricht').then(() => { 
