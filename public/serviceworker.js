@@ -13,13 +13,13 @@ if ('serviceWorker' in navigator) {
          $('#newtodo').submit(function(e){
 		e.preventDefault();
 		console.log('submit');
-		$.post("/todo",{'text': $('#text').val()}, function(data){
+		// $.post("/todo",{'text': $('#text').val()}, function(data){ 
 			console.log(data);
 			var payload = {'text': $('#text').val()}
 			idbKeyval.set('data', payload); 
 			listTodo();
 					
-		});	
+		//});	
 		$('#newtodo')[0].reset();
 	});
      
