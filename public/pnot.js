@@ -1,7 +1,7 @@
 var endpoint;
 var key;
 var authSecret;
-var vapidPublicKey = 'BMHSuJfgy5mGp7HY86YrdPVphpVRHtkownJjuLxzi9v_5WeKMhbOTXMyb7X2m4tQOCprZnjCaTy69TISP880HgA';
+var vapidPublicKey = ''BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY';
 
 
 function urlB64ToUint8Array(base64String) {
@@ -28,7 +28,7 @@ webpush.setVapidDetails(
 'BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY',
  'p6YVD7t8HkABoez1CvVJ5bl7BnEdKUu5bSyVjyxMBh0'
 );
-app.post('/register', function (req, res) { 
+app.post('/todo', function (req, res) { 
   var endpoint = req.body.endpoint;
 saveRegistrationDetails(endpoint, key, authSecret); 
  const pushSubscription = { 
