@@ -10,7 +10,17 @@ if ('serviceWorker' in navigator) {
      navigator.serviceWorker.register('/sw.js')
      .then(registration => navigator.serviceWorker.ready) 
      .then(registration => {
-         addSyncEvent();
+         //addSyncEvent();
+	     $('#newtodo').submit(function(e){
+		registration.sync.register('textNachricht').then(() => { 
+			e.preventDefault();
+			console.log('submit');	
+			var payload = {'text': $('#text').val()}
+			idbKeyval.set('data', payload); 	
+			$('#newtodo')[0].reset();
+              	});
+		
+	});
      
     
  });
