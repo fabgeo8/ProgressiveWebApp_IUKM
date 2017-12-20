@@ -22,6 +22,17 @@ $(document).ready(function(){
 	});
 });
 
+function submitTodo(item){
+	console.log('submit');
+	$.post("/todo",{'text': item}, function(data){
+		console.log(data);
+
+		listTodo();
+
+	});	
+	$('#newtodo')[0].reset();	
+}
+
 function listTodo(){
 	$.get('/todo', function(items){
 
