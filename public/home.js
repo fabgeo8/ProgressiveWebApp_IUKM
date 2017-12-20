@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
 	listTodo();
-
 	/* $('#newtodo').submit(function(e){
 		e.preventDefault();
 		console.log('submit');
