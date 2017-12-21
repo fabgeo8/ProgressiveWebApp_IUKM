@@ -63,7 +63,19 @@ self.addEventListener('sync', (event) => {
                method: 'POST',
                headers: new Headers({ 'content-type': 'application/json' }),
                body: JSON.stringify(value) 
-         })));
+         }).then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' + response.status);
+        return;
+      }
+      console.log(response);
+      
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  })));
          
          idbKeyval.delete('data'); 
          console.log("done");
