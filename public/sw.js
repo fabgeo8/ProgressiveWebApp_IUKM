@@ -62,6 +62,7 @@ self.addEventListener('sync', (event) => {
       }
       console.log(response);
       send_message_to_all_clients("post complete");
+      idbKeyval.delete('data');
       
     }
   )
@@ -69,7 +70,7 @@ self.addEventListener('sync', (event) => {
     console.log('Fetch Error :-S', err);
   })));
          
-         idbKeyval.delete('data'); 
+          
                     
 
       }
