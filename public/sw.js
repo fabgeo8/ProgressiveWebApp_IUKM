@@ -9,6 +9,7 @@ self.addEventListener('install', event => {
        '/camping.png',
        '/camping2.png',
        '/home.js',
+       '/serviceworker.js',
        '/idb-keyval.js',
        '/index.html',
        '/style.css',
