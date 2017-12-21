@@ -35,6 +35,8 @@ saveRegistrationDetails(endpoint, key, authSecret);
  };
 	
  sendPushNotification("Thank you for registering");
+
+ res.status(200).send("OK");
 	
 });
 
@@ -48,7 +50,7 @@ function sendPushNotification(msg){
 			url: 'https://iuk.herokuapp.com/',
 			icon: iconUrl
 		}))
-		.then(result => res.sendStatus(201))
+		.then(result => console.log("push sent"))
 		.catch(err => { console.log(err); });	
 	}
 	
