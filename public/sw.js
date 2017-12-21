@@ -86,7 +86,7 @@ self.addEventListener('sync', (event) => {
 
 self.addEventListener('push', function (event) {
  var payload = event.data ? JSON.parse(event.data.text()) : 'no payload'; 
- var title = 'New Todo Added';
+ var title = 'Todo List';
  event.waitUntil(
    self.registration.showNotification(title, { 
       body: payload.msg,
