@@ -23,7 +23,6 @@
 		});
 		
 	});	
-    addPushService(registration);
      
     console.log('Service Worker and Sync is supported');
 	 //navigator.serviceWorker.ready.then(function() { console.log("hi service worker ist parat") })
@@ -41,47 +40,51 @@
  }
 
 if('serviceWorker' in navigator){
-    // Handler for messages coming from the service worker
-    navigator.serviceWorker.addEventListener('message', function(event){
-        console.log("Client 1 Received Message: " + event.data);
-	if(event.data == "post complete"){
-		listTodo();	
+	navigator.serviceWorker.ready.then(function(){
+	    // Handler for messages coming from the service worker
+	    navigator.serviceWorker.addEventListener('message', function(event){
+		console.log("Client 1 Received Message: " + event.data);
+		if(event.data == "post complete"){
+			listTodo();	
+		}
+
+		event.ports[0].postMessage("OK");
+		});
 	}
-	
-        event.ports[0].postMessage("OK");
-    });
 }
  
-function addPushService(registration){
-	registration.pushManager.getSubscription() 
-        .then(function(subscription) {
-        if (subscription) { 
-            return;
-        }
-        return registration.pushManager.subscribe({ 
-            userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
-        })
-        .then(function(subscription) {
-            var rawKey = subscription.getKey ? subscription.getKey('p256dh') : ''; 
-            key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
-            var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
-            authSecret = rawAuthSecret ?
-            btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
-            endpoint = subscription.endpoint;
-            return fetch('/pushNot', { 
-                method: 'post',
-                headers: new Headers({
-                    'content-type': 'application/json'
-                }),
-                body: JSON.stringify({
-                    endpoint: subscription.endpoint,
-                    key: key,
-                    authSecret: authSecret
-                }),
-            });
-        });
-    });
+if ('serviceWorker' in navigator){
+	navigator.serviceWorker.ready.then(function (registration){
+		registration.pushManager.getSubscription() 
+			.then(function(subscription) {
+			if (subscription) { 
+				return;
+			}
+			return registration.pushManager.subscribe({ 
+				userVisibleOnly: true,
+				applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+			})
+			.then(function(subscription) {
+				var rawKey = subscription.getKey ? subscription.getKey('p256dh') : ''; 
+				key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
+				var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+				authSecret = rawAuthSecret ?
+				btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
+				endpoint = subscription.endpoint;
+				return fetch('/pushNot', { 
+					method: 'post',
+					headers: new Headers({
+						'content-type': 'application/json'
+					}),
+					body: JSON.stringify({
+						endpoint: subscription.endpoint,
+						key: key,
+						authSecret: authSecret
+					}),
+				});
+			});
+		});
+	 }
  }
 
 function addSyncEvent(){
