@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
+var pushSubscription = {};
+
 webpush.setVapidDetails( 
  'mailto:contact@deanhume.com',
 'BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY',
@@ -24,7 +26,7 @@ app.post('/pushNot', function (req, res) {
 	
 saveRegistrationDetails(endpoint, key, authSecret); 
 	
- const pushSubscription = { 
+ pushSubscription = { 
   endpoint: req.body.endpoint,
     keys: {
       auth: req.body.authSecret,
@@ -33,19 +35,22 @@ saveRegistrationDetails(endpoint, key, authSecret);
  };
 	
  sendPushNotification("Thank you for registering");
+	
 });
 
 function sendPushNotification(msg){
-	var body = msg;
-	var iconUrl = 'https://d30y9cdsu7xlg0.cloudfront.net/png/12540-200.png';
-	webpush.sendNotification(pushSubscription, 
-	JSON.stringify({
-		msg: body,
-		url: 'https://iuk.herokuapp.com/',
-		icon: iconUrl
-	}))
-	.then(result => res.sendStatus(201))
-	.catch(err => { console.log(err); });	
+	if(pushSubscription){
+		var body = msg;
+		var iconUrl = 'https://d30y9cdsu7xlg0.cloudfront.net/png/12540-200.png';
+		webpush.sendNotification(pushSubscription, 
+		JSON.stringify({
+			msg: body,
+			url: 'https://iuk.herokuapp.com/',
+			icon: iconUrl
+		}))
+		.then(result => res.sendStatus(201))
+		.catch(err => { console.log(err); });	
+	}
 	
 }
 
