@@ -50,7 +50,7 @@ if('serviceWorker' in navigator){
 
 		event.ports[0].postMessage("OK");
 		});
-	}
+	});
 }
  
 if ('serviceWorker' in navigator){
