@@ -70,6 +70,7 @@ self.addEventListener('sync', (event) => {
         return;
       }
       console.log(response);
+      send_message_to_all_clients("post complete");
       
     }
   )
@@ -78,9 +79,7 @@ self.addEventListener('sync', (event) => {
   })));
          
          idbKeyval.delete('data'); 
-         console.log("done");
-         //listTodo();
-         send_message_to_all_clients("post complete");
+                    
 
       }
 });
