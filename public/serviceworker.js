@@ -61,7 +61,7 @@ if ('serviceWorker' in navigator){
 			}
 			return registration.pushManager.subscribe({ 
 				userVisibleOnly: true,
-				applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+				applicationServerKey: urlBase64ToUint8Array("BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY")
 			})
 			.then(function(subscription) {
 				var rawKey = subscription.getKey ? subscription.getKey('p256dh') : ''; 
