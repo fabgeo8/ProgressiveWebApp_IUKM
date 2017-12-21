@@ -17,7 +17,7 @@
 				
 			var payload = {'text': $('#text').val()};
 			idbKeyval.set('data', payload); 
-			console.log("textNachricht registered with payload" + payload);
+			console.log("textNachricht registered with payload" + payload.text);
 			//reset input field
 			$('#newtodo')[0].reset();
 		});
@@ -25,7 +25,6 @@
 	});	
      
     console.log('Service Worker and Sync is supported');
-	 //navigator.serviceWorker.ready.then(function() { console.log("hi service worker ist parat") })
 	
  }).catch(function(){
 		 console.log("unable to register for sync");
