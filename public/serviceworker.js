@@ -84,7 +84,7 @@ if ('serviceWorker' in navigator){
 				});
 			});
 		});
-	 }
+	 });
  }
 
 function addSyncEvent(){
