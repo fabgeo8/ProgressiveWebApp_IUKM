@@ -61,7 +61,7 @@ app.post('/todo', function (req, res) {
 		todo.push(item);
 	}
 	
-	res.status(200);
+	res.status(200).send("OK");
 });
 
 app.get('/todo', function (req, res){
