@@ -31,17 +31,23 @@ saveRegistrationDetails(endpoint, key, authSecret);
       p256dh: req.body.key
       }
  };
- var body = 'Thank you for registering';
-var iconUrl = 'https://d30y9cdsu7xlg0.cloudfront.net/png/12540-200.png';
- webpush.sendNotification(pushSubscription, 
-  JSON.stringify({
-    msg: body,
-    url: 'https://iuk.herokuapp.com/',
-    icon: iconUrl
- }))
- .then(result => res.sendStatus(201))
- .catch(err => { console.log(err); });
+	
+ sendPushNotification("Thank you for registering");
 });
+
+function sendPushNotification(msg){
+	var body = msg;
+	var iconUrl = 'https://d30y9cdsu7xlg0.cloudfront.net/png/12540-200.png';
+	webpush.sendNotification(pushSubscription, 
+	JSON.stringify({
+		msg: body,
+		url: 'https://iuk.herokuapp.com/',
+		icon: iconUrl
+	}))
+	.then(result => res.sendStatus(201))
+	.catch(err => { console.log(err); });	
+	
+}
 
 function saveRegistrationDetails(endpoint, key, authSecret) {
   // Save the users details in a DB
@@ -60,7 +66,7 @@ app.post('/todo', function (req, res) {
 		console.log('request item: '+ item);
 		todo.push(item);
 	}
-	
+	sendPushNotification("New item added: "+ item);
 	res.status(200).send("Added: " + item);
 });
 
